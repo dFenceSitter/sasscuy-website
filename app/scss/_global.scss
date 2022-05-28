@@ -50,8 +50,34 @@ a {
 }
 
 //for desktop body margin 
+.body-margin-header {
+    @include breakpoint-up(large) {
+        margin-inline: 120px;
+        padding-inline: 0 !important;
+    }  
+}
+
 .body-margin {
     @include breakpoint-up(large) {
-        margin-inline: calc(120px - 23px);
+        margin-inline: 120px;
     }  
+}
+
+//remove overlay for desktop
+.remove-overlay {
+    @include breakpoint-up(large) {
+        .overlay {
+            display: none;
+        }
+    }  
+}
+
+.overlay {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient($overlay, transparent);
+    z-index: 0;
 }

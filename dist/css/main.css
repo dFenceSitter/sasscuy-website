@@ -1,3 +1,21 @@
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 html {
   font-size: 100%;
   -webkit-box-sizing: border-box;
@@ -58,9 +76,33 @@ a {
 }
 
 @media (min-width: 64em) {
-  .body-margin {
-    margin-inline: calc(120px - 23px);
+  .body-margin-header {
+    margin-inline: 120px;
+    padding-inline: 0 !important;
   }
+}
+
+@media (min-width: 64em) {
+  .body-margin {
+    margin-inline: 120px;
+  }
+}
+
+@media (min-width: 64em) {
+  .remove-overlay .overlay {
+    display: none;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8928ff8a), to(transparent));
+  background-image: linear-gradient(#8928ff8a, transparent);
+  z-index: 0;
 }
 
 .header__section {
@@ -68,9 +110,43 @@ a {
   background-image: linear-gradient(45deg, #C173FF, #C1BCFF, #AAEBFF, #DEB5FF, #FFD9DD, #FFDA58, #FFDD65);
 }
 
+.header.open .overlay {
+  display: block;
+  -webkit-animation: fade-in 300ms ease-in-out forwards;
+          animation: fade-in 300ms ease-in-out forwards;
+}
+
+.header.open .header__toggle > span:first-child {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.header.open .header__toggle > span:nth-child(2) {
+  opacity: 0;
+}
+
+.header.open .header__toggle > span:last-child {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.header .overlay {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#8928ff8a), to(transparent));
+  background-image: linear-gradient(#8928ff8a, transparent);
+}
+
 .header nav {
+  position: relative;
   padding: 32px 23px;
   font-family: 'Space Grotesk', sans-serif;
+  z-index: 2;
 }
 
 .header__toggle > span {
@@ -79,6 +155,10 @@ a {
   height: 2px;
   border-radius: 2px;
   background-color: #8828FF;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  -webkit-transform-origin: -11.5% center;
+          transform-origin: -11.5% center;
 }
 
 .header__toggle > span:not(last-of-type) {
@@ -111,5 +191,12 @@ a {
   border: 1.5px solid #8828FF;
   padding: 14px 32px;
   border-radius: 40px;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.header .header__btn:hover {
+  color: #ffffff;
+  background-color: #8828FF;
 }
 /*# sourceMappingURL=main.css.map */
